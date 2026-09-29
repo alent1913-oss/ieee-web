@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>IEEE CS MBITS Student Branch Chapter</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS with plugins -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            background: "#000000",
+            surface: "#050505",
+            "surface-container": "#0d0d0f",
+            "surface-container-high": "#151518",
+            "surface-container-highest": "#222226",
+            primary: "#ffffff",
+            "primary-container": "#ffffff",
+            "on-primary": "#000000",
+            "on-surface": "#ffffff",
+            "on-surface-variant": "#a1a1aa",
+            outline: "#52525b",
+            "outline-variant": "#27272a"
+          },
+          fontFamily: {
+            display: ["Space Grotesk", "sans-serif"],
+            headline: ["Space Grotesk", "sans-serif"],
+            body: ["Geist", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Monochrome subtle grid */
+    .mono-grid {
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    }
+
+    /* Halo Glows */
+    .halo-glow {
+      box-shadow: 0 0 50px rgba(255, 255, 255, 0.07);
+    }
+
+    .halo-glow-sm {
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+    }
+
+    .halo-card-hover:hover {
+      box-shadow: 0 0 35px rgba(255, 255, 255, 0.08);
+    }
+
+    /* CSS Orbit Animations */
+    @keyframes spin-cw {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin-ccw {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(-360deg);
+      }
+    }
+
+    .orbit-ring-1 {
+      animation: spin-cw 22s linear infinite;
+    }
+
+    .orbit-ring-2 {
+      animation: spin-ccw 34s linear infinite;
+    }
+
+    .orbit-ring-3 {
+      animation: spin-cw 48s linear infinite;
+    }
+
+    .counter-spin-1 {
+      animation: spin-ccw 22s linear infinite;
+    }
+
+    .counter-spin-2 {
+      animation: spin-cw 34s linear infinite;
+    }
+
+    .counter-spin-3 {
+      animation: spin-ccw 48s linear infinite;
+    }
+
+    /* Pause animations on hover for inspecting */
+    .orbit-container:hover .orbit-ring-1,
+    .orbit-container:hover .orbit-ring-2,
+    .orbit-container:hover .orbit-ring-3,
+    .orbit-container:hover .counter-spin-1,
+    .orbit-container:hover .counter-spin-2,
+    .orbit-container:hover .counter-spin-3 {
+      animation-play-state: paused;
+    }
+
+    /* Smooth scroll & offset */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    /* Top Page Loader Bar */
+    .page-loader-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #52525b, #ffffff, #a1a1aa, #ffffff);
+      background-size: 300% 100%;
+      z-index: 99999;
+      pointer-events: none;
+      transition: width 0.35s ease-out, opacity 0.4s ease;
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
+      animation: shimmer-gradient 2s linear infinite;
+    }
+
+    @keyframes shimmer-gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 300% 50%;
+      }
+    }
+
+    /* Entrance Animations on Open */
+    @keyframes refresh-slide-down {
+      0% {
+        opacity: 0;
+        transform: translateY(-28px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes refresh-fade-up {
+      0% {
+        opacity: 0;
+        transform: translateY(32px) scale(0.98);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes refresh-zoom-in {
+      0% {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    header {
+      animation: refresh-slide-down 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-badge-intro {
+      animation: refresh-fade-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    }
+
+    .hero-title {
+      animation: refresh-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+    }
+
+    .hero-desc {
+      animation: refresh-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+    }
+
+    .hero-actions {
+      animation: refresh-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.48s both;
+    }
+
+    .hero-affiliations {
+      animation: refresh-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+    }
+
+    .orbit-container {
+      animation: refresh-zoom-in 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-1 {
+      transition-delay: 0.1s;
+    }
+
+    .stagger-2 {
+      transition-delay: 0.2s;
+    }
+
+    .stagger-3 {
+      transition-delay: 0.3s;
+    }
+
+    .stagger-4 {
+      transition-delay: 0.4s;
+    }
+
+    /* Card interactive spotlight glow */
+    .spotlight-card {
+      position: relative;
+    }
+
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(400px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(255, 255, 255, 0.08), transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body class="bg-black text-white antialiased overflow-x-hidden selection:bg-white selection:text-black font-body">
+  <!-- TOP NAVIGATION -->
+  <header class="sticky top-0 z-50 bg-black/85 backdrop-blur-xl border-b border-white/10">
+    <div class="flex justify-between items-center w-full px-6 lg:px-12 max-w-[1440px] mx-auto h-20">
+      <a href="#hero"
+        class="flex items-center gap-3 text-white font-headline font-bold text-lg tracking-tight hover:opacity-90 transition-opacity">
+        <div
+          class="w-8 h-8 rounded-lg bg-zinc-900 border border-white/20 flex items-center justify-center font-mono text-xs font-black shadow-[0_0_12px_rgba(255,255,255,0.15)]">
+          CS
+        </div>
+        <span class="hidden sm:inline font-mono text-xs tracking-wider text-zinc-300 uppercase">IEEE CS MBITS</span>
+      </a>
+      <nav class="flex items-center justify-center space-x-6 md:space-x-10" id="nav-links">
+        <a class="nav-item text-white font-semibold border-b-2 border-white pb-1 text-sm font-mono tracking-wide transition-all"
+          href="#hero">Home</a>
+        <a class="nav-item text-zinc-400 font-medium hover:text-white transition-colors duration-200 text-sm font-mono tracking-wide"
+          href="gallery.html">Gallery</a>
+        <a class="nav-item text-zinc-400 font-medium hover:text-white transition-colors duration-200 text-sm font-mono tracking-wide"
+          href="events.html">Events</a>
+        <a class="nav-item text-zinc-400 font-medium hover:text-white transition-colors duration-200 text-sm font-mono tracking-wide"
+          href="team.html">Team</a>
+      </nav>
+      <div class="flex items-center">
+        <a class="px-5 py-2 rounded-full bg-white text-black font-mono text-xs uppercase tracking-wider font-bold hover:bg-zinc-200 transition-all active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.25)]"
+          href="#join">
+          Join Now
+        </a>
+      </div>
+    </div>
+  </header>
+  <main class="relative z-10">
+    <!-- HERO SECTION: Two-Column Stack Feature (Excluded from particles) -->
+    <section
+      class="relative min-h-[90vh] flex items-center mono-grid px-6 lg:px-12 py-16 lg:py-20 border-b border-white/10 overflow-hidden"
+      id="hero">
+      <!-- Subtle monochrome radial ambient lightings -->
+      <div
+        class="absolute -top-32 left-1/3 w-[650px] h-[650px] bg-white/[0.03] blur-[150px] pointer-events-none rounded-full">
+      </div>
+      <div
+        class="absolute bottom-10 right-10 w-[500px] h-[500px] bg-zinc-600/[0.04] blur-[140px] pointer-events-none rounded-full">
+      </div>
+      <div class="max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <!-- LEFT COLUMN -->
+        <div class="lg:col-span-7 flex flex-col justify-center z-10">
+          <!-- Badge -->
+          <div
+            class="hero-badge-intro inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-zinc-950/80 border border-white/20 backdrop-blur-xl w-max mb-8 shadow-[0_0_15px_rgba(255,255,255,0.06)]">
+            <span class="material-symbols-outlined text-white text-[16px]" data-icon="memory">memory</span>
+            <span class="font-mono text-[11px] font-semibold text-zinc-300 tracking-widest uppercase">IEEE COMPUTER
+              SOCIETY • MBITS SBC EST. 2021</span>
+            <span class="inline-block w-1.5 h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_#ffffff]"></span>
+          </div>
+          <!-- Headline -->
+          <h1
+            class="hero-title font-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 text-white">
+            EMPOWERING FUTURE <br class="hidden sm:inline" />
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-zinc-400">
+              ARCHITECTS OF COMPUTING
+            </span>
+            <br class="hidden sm:inline" /> &amp; INTELLIGENCE.
+          </h1>
+          <!-- Description -->
+          <p class="hero-desc font-body text-base lg:text-lg text-zinc-400 max-w-2xl mb-10 leading-relaxed font-light">
+            Catalyzing research-grade engineering, competitive hackathons, decentralized networks, and applied AI labs.
+            Based at Mar Athanasius College of Engineering / MBITS, directly affiliated with IEEE Kerala Section and
+            IEEE Computer Society Global.
+          </p>
+          <!-- Action Buttons -->
+          <div class="hero-actions flex flex-wrap items-center gap-4 mb-12">
+            <a class="bg-white text-black font-mono text-xs font-bold uppercase tracking-wider px-7 py-3.5 rounded hover:bg-zinc-200 transition-all duration-200 active:scale-95 flex items-center gap-2 shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+              href="#events">
+              <span>Explore Flagship Events</span>
+              <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+            </a>
+            <a class="bg-white/5 border border-white/20 text-white font-mono text-xs font-medium uppercase tracking-wider px-6 py-3.5 rounded hover:bg-white/10 hover:border-white/40 transition-all duration-200 active:scale-95 flex items-center gap-2 backdrop-blur-xl"
+              href="#domains">
+              <span>View Technical Domains</span>
+              <span class="material-symbols-outlined text-[18px]" data-icon="deployed_code">deployed_code</span>
+            </a>
+          </div>
+          <!-- Monochrome Affiliation Micro-chips -->
+          <div class="hero-affiliations flex flex-wrap items-center gap-2.5 pt-2">
+            <span class="font-mono text-[11px] text-zinc-500 uppercase tracking-widest mr-1">// AFFILIATIONS:</span>
+            <span
+              class="px-3 py-1.5 rounded-full bg-zinc-950/80 border border-white/10 font-mono text-xs text-zinc-300 flex items-center gap-2 hover:border-white/25 transition-all">
+              <span class="w-1.5 h-1.5 rounded-full bg-zinc-400"></span> IEEE Xplore Digital Library
+            </span>
+            <span
+              class="px-3 py-1.5 rounded-full bg-zinc-950/80 border border-white/10 font-mono text-xs text-zinc-300 flex items-center gap-2 hover:border-white/25 transition-all">
+              <span class="w-1.5 h-1.5 rounded-full bg-zinc-400"></span> IEEE CS Kerala Section
+            </span>
+            <span
+              class="px-3 py-1.5 rounded-full bg-zinc-950/80 border border-white/10 font-mono text-xs text-zinc-300 flex items-center gap-2 hover:border-white/25 transition-all">
+              <span class="w-1.5 h-1.5 rounded-full bg-zinc-400"></span> MBITS IEDC Innovation Hub
+            </span>
+            <span
+              class="px-3 py-1.5 rounded-full bg-zinc-950/80 border border-white/10 font-mono text-xs text-zinc-300 flex items-center gap-2 hover:border-white/25 transition-all">
+              <span class="w-1.5 h-1.5 rounded-full bg-zinc-400"></span> IEEE Computer Society Global
+            </span>
+          </div>
+        </div>
+        <!-- RIGHT COLUMN: Animated Multi-Orbit Tech Stack Visualization -->
+        <div
+          class="lg:col-span-5 flex items-center justify-center relative w-full aspect-square max-w-[520px] mx-auto select-none orbit-container">
+          <!-- Subtle Radial Backdrop Glow -->
+          <div class="absolute inset-0 m-auto w-64 h-64 bg-white/[0.04] rounded-full blur-2xl pointer-events-none">
+          </div>
+          <!-- ORBIT RING 3 (Outer - 450px) -->
+          <div
+            class="absolute w-[440px] h-[440px] rounded-full border border-dashed border-white/15 orbit-ring-3 flex items-center justify-center">
+            <!-- Node: IoT / Chip (Top) -->
+            <div class="absolute -top-5 flex flex-col items-center counter-spin-3">
+              <div
+                class="w-10 h-10 rounded-full bg-zinc-950 border border-white/20 flex items-center justify-center text-white shadow-[0_0_12px_rgba(255,255,255,0.1)] hover:border-white transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-[20px]" data-icon="memory">memory</span>
+              </div>
+              <span
+                class="mt-1 font-mono text-[9px] text-zinc-400 tracking-tight uppercase bg-black/80 px-1 rounded">IoT /
+                RTOS</span>
+            </div>
+            <!-- Node: Database (Bottom Right) -->
+            <div class="absolute bottom-12 right-6 flex flex-col items-center counter-spin-3">
+              <div
+                class="w-10 h-10 rounded-full bg-zinc-950 border border-white/20 flex items-center justify-center text-white shadow-[0_0_12px_rgba(255,255,255,0.1)] hover:border-white transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-[20px]" data-icon="database">database</span>
+              </div>
+              <span
+                class="mt-1 font-mono text-[9px] text-zinc-400 tracking-tight uppercase bg-black/80 px-1 rounded">Vector
+                DB</span>
+            </div>
+            <!-- Node: Git (Bottom Left) -->
+            <div class="absolute bottom-12 left-6 flex flex-col items-center counter-spin-3">
+              <div
+                class="w-10 h-10 rounded-full bg-zinc-950 border border-white/20 flex items-center justify-center text-white shadow-[0_0_12px_rgba(255,255,255,0.1)] hover:border-white transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-[20px]" data-icon="fork_right">fork_right</span>
+              </div>
+              <span
+                class="mt-1 font-mono text-[9px] text-zinc-400 tracking-tight uppercase bg-black/80 px-1 rounded">GitOps</span>
+            </div>
+          </div>
+          <!-- ORBIT RING 2 (Middle - 320px) -->
+          <div
+            class="absolute w-[310px] h-[310px] rounded-full border border-white/10 orbit-ring-2 flex items-center justify-center">
+            <!-- Node: Cloud (Right) -->
+            <div class="absolute -right-5 flex flex-col items-center counter-spin-2">
+              <div
+                class="w-10 h-10 rounded-full bg-zinc-950 border border-white/20 flex items-center justify-center text-white shadow-[0_0_12px_rgba(255,255,255,0.1)] hover:border-white transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-[20px]" data-icon="cloud">cloud</span>
+              </div>
+              <span
+                class="mt-1 font-mono text-[9px] text-zinc-400 tracking-tight uppercase bg-black/80 px-1 rounded">Kubernetes</span>
+            </div>
+            <!-- Node: Security / Shield (Left) -->
+            <div class="absolute -left-5 flex flex-col items-center counter-spin-2">
+              <div
+                class="w-10 h-10 rounded-full bg-zinc-950 border border-white/20 flex items-center justify-center text-white shadow-[0_0_12px_rgba(255,255,255,0.1)] hover:border-white transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-[20px]" data-icon="security">security</span>
+              </div>
+              <span
+                class="mt-1 font-mono text-[9px] text-zinc-400 tracking-tight uppercase bg-black/80 px-1 rounded">SecOps</span>
+            </div>
+            <!-- Node: React (Bottom) -->
+            <div class="absolute -bottom-5 flex flex-col items-center counter-spin-2">
+              <div
+                class="w-10 h-10 rounded-full bg-zinc-950 border border-white/20 flex items-center justify-center text-white shadow-[0_0_12px_rgba(255,255,255,0.1)] hover:border-white transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-[20px]" data-icon="deployed_code">deployed_code</span>
+              </div>
+              <span
+                class="mt-1 font-mono text-[9px] text-zinc-400 tracking-tight uppercase bg-black/80 px-1 rounded">React
+                / Next</span>
+            </div>
+          </div>
+          <!-- ORBIT RING 1 (Inner - 190px) -->
+          <div
+            class="absolute w-[190px] h-[190px] rounded-full border border-dashed border-white/20 orbit-ring-1 flex items-center justify-center">
+            <!-- Node: AI / Brain (Top) -->
+            <div class="absolute -top-4 flex flex-col items-center counter-spin-1">
+              <div
+                class="w-9 h-9 rounded-full bg-zinc-950 border border-white/25 flex items-center justify-center text-white shadow-[0_0_12px_rgba(255,255,255,0.15)] hover:border-white transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-[18px]" data-icon="psychology">psychology</span>
+              </div>
+              <span
+                class="mt-0.5 font-mono text-[9px] text-zinc-300 tracking-tight uppercase bg-black/80 px-1 rounded">PyTorch</span>
+            </div>
+            <!-- Node: Terminal / Python (Bottom) -->
+            <div class="absolute -bottom-4 flex flex-col items-center counter-spin-1">
+              <div
+                class="w-9 h-9 rounded-full bg-zinc-950 border border-white/25 flex items-center justify-center text-white shadow-[0_0_12px_rgba(255,255,255,0.15)] hover:border-white transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-[18px]" data-icon="terminal">terminal</span>
+              </div>
+              <span
+                class="mt-0.5 font-mono text-[9px] text-zinc-300 tracking-tight uppercase bg-black/80 px-1 rounded">Python</span>
+            </div>
+          </div>
+          <!-- CENTRAL CORE HUB -->
+          <div
+            class="relative z-10 w-24 h-24 rounded-full bg-black border-2 border-white/30 flex flex-col items-center justify-center text-center shadow-[0_0_40px_rgba(255,255,255,0.25)] group cursor-pointer hover:border-white transition-all">
+            <div
+              class="w-20 h-20 rounded-full bg-zinc-950 border border-white/10 flex flex-col items-center justify-center">
+              <span class="font-headline font-black text-xl tracking-tighter text-white">IEEE</span>
+              <span class="font-mono text-[10px] tracking-widest text-zinc-400 font-bold -mt-0.5">CS CORE</span>
+              <div class="w-1.5 h-1.5 rounded-full bg-white animate-ping mt-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- LOWER CONTENT WRAPPER: Contains subtle monochrome particle background canvas for all sections below hero -->
+    <div class="relative w-full overflow-hidden" id="lower-content-wrapper">
+      <!-- Subtle monochrome particle canvas (strictly scoped below hero) -->
+      <canvas aria-hidden="true" class="absolute inset-0 w-full h-full pointer-events-none z-0"
+        id="particle-canvas"></canvas>
+      <div class="relative z-10">
+        <!-- FLAGSHIP EVENTS SECTION -->
+        <section class="py-24 px-6 lg:px-12 max-w-[1440px] mx-auto" id="events">
+          <div class="reveal-on-scroll flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+              <div class="flex items-center gap-2 text-zinc-400 font-mono text-xs uppercase tracking-widest mb-2">
+                <span class="material-symbols-outlined text-[16px] text-white" data-icon="radar">radar</span>
+                <span>MISSION DIRECTORY // FLAGSHIP EVENTS</span>
+              </div>
+              <h2 class="font-headline text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                CURATED CODE &amp; RESEARCH MISSIONS
+              </h2>
+            </div>
+            <!-- Monochrome Filter Controls -->
+            <div class="flex items-center gap-1.5 p-1 bg-zinc-950 border border-white/10 rounded-full backdrop-blur-xl">
+              <button
+                class="px-4 py-1.5 rounded-full bg-white text-black font-mono text-xs font-bold shadow-[0_0_15px_rgba(255,255,255,0.2)]">All</button>
+              <button
+                class="px-4 py-1.5 rounded-full text-zinc-400 hover:text-white font-mono text-xs transition-colors">Hackathons</button>
+              <button
+                class="px-4 py-1.5 rounded-full text-zinc-400 hover:text-white font-mono text-xs transition-colors">Bootcamps</button>
+              <button
+                class="px-4 py-1.5 rounded-full text-zinc-400 hover:text-white font-mono text-xs transition-colors">Speaker
+                Series</button>
+            </div>
+          </div>
+          <!-- 3 Monochrome Event Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1: CYBERSHIFT 4.0 -->
+            <div
+              class="reveal-on-scroll stagger-1 spotlight-card group relative rounded-xl bg-zinc-950/80 border border-white/10 hover:border-white/35 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 halo-card-hover flex flex-col justify-between overflow-hidden">
+              <div
+                class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent">
+              </div>
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span
+                    class="px-2.5 py-1 rounded bg-white/5 border border-white/20 text-white font-mono text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                    REGISTRATION OPEN
+                  </span>
+                  <span class="font-mono text-xs text-zinc-500">// NATIONAL HACKATHON</span>
+                </div>
+                <h3 class="font-headline text-xl font-bold text-white group-hover:text-zinc-200 transition-colors mb-2">
+                  CYBERSHIFT 4.0
+                </h3>
+                <p class="font-body text-sm text-zinc-400 mb-6 leading-relaxed">
+                  36-Hour National Web3 &amp; Autonomous AI Hackathon. Build autonomous agent workflows, decentralized
+                  identity registries, and resilient cryptographic tooling.
+                </p>
+                <div class="space-y-2.5 mb-6 border-y border-white/10 py-4 font-mono text-xs">
+                  <div class="flex justify-between items-center text-zinc-400">
+                    <span class="flex items-center gap-1.5"><span
+                        class="material-symbols-outlined text-[16px] text-zinc-300"
+                        data-icon="payments">payments</span>Prize Pool</span>
+                    <span class="font-bold text-white">₹50,000 INR</span>
+                  </div>
+                  <div class="flex justify-between items-center text-zinc-400">
+                    <span class="flex items-center gap-1.5"><span
+                        class="material-symbols-outlined text-[16px] text-zinc-300"
+                        data-icon="calendar_month">calendar_month</span>Schedule</span>
+                    <span class="text-zinc-200">NOV 28 - 30, 2025</span>
+                  </div>
+                  <div class="flex justify-between items-center text-zinc-400">
+                    <span class="flex items-center gap-1.5"><span
+                        class="material-symbols-outlined text-[16px] text-zinc-300"
+                        data-icon="location_on">location_on</span>Venue</span>
+                    <span class="text-zinc-200">APJ Abdul Kalam Tech Block</span>
+                  </div>
+                </div>
+              </div>
+              <a href="#join"
+                class="w-full py-3 bg-white text-black font-mono text-xs font-bold rounded flex items-center justify-center gap-2 hover:bg-zinc-200 transition-all active:scale-98 shadow-[0_0_15px_rgba(255,255,255,0.15)]">
+                <span>Register Now</span>
+                <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+              </a>
+            </div>
+            <!-- Card 2: NEURAL MATRIX 2025 -->
+            <div
+              class="group relative rounded-xl bg-zinc-950/80 border border-white/10 hover:border-white/35 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 halo-card-hover flex flex-col justify-between overflow-hidden">
+              <div
+                class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent">
+              </div>
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span
+                    class="px-2.5 py-1 rounded bg-white/5 border border-white/20 text-zinc-300 font-mono text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-zinc-400"></span>
+                    LIMITED SEATS (60/80)
+                  </span>
+                  <span class="font-mono text-xs text-zinc-500">// RESEARCH LAB</span>
+                </div>
+                <h3 class="font-headline text-xl font-bold text-white group-hover:text-zinc-200 transition-colors mb-2">
+                  NEURAL MATRIX 2025
+                </h3>
+                <p class="font-body text-sm text-zinc-400 mb-6 leading-relaxed">
+                  Hands-on Deep Learning &amp; Generative AI Workshop. Fine-tuning local SLMs, vector indexing, and
+                  multimodal agent engineering instructed by Google &amp; IEEE Distinguished Scientists.
+                </p>
+                <div class="space-y-2.5 mb-6 border-y border-white/10 py-4 font-mono text-xs">
+                  <div class="flex justify-between items-center text-zinc-400">
+                    <span class="flex items-center gap-1.5"><span
+                        class="material-symbols-outlined text-[16px] text-zinc-300"
+                        data-icon="school">school</span>Certification</span>
+                    <span class="font-bold text-white">IEEE CS Credential</span>
+                  </div>
+                  <div class="flex justify-between items-center text-zinc-400">
+                    <span class="flex items-center gap-1.5"><span
+                        class="material-symbols-outlined text-[16px] text-zinc-300"
+                        data-icon="calendar_month">calendar_month</span>Date</span>
+                    <span class="text-zinc-200">DEC 12, 2025</span>
+                  </div>
+                  <div class="flex justify-between items-center text-zinc-400">
+                    <span class="flex items-center gap-1.5"><span
+                        class="material-symbols-outlined text-[16px] text-zinc-300"
+                        data-icon="laptop_chromebook">laptop_chromebook</span>Mode</span>
+                    <span class="text-zinc-200">Hybrid // High-Compute Lab</span>
+                  </div>
+                </div>
+              </div>
+              <a href="#join"
+                class="w-full py-3 bg-zinc-900 border border-white/20 hover:border-white/50 text-white font-mono text-xs font-semibold rounded flex items-center justify-center gap-2 hover:bg-zinc-800 transition-all active:scale-98">
+                <span>Reserve Lab Seat</span>
+                <span class="material-symbols-outlined text-[18px]" data-icon="launch">launch</span>
+              </a>
+            </div>
+            <!-- Card 3: CODECRUX CODEFEST -->
+            <div
+              class="group relative rounded-xl bg-zinc-950/80 border border-white/10 hover:border-white/35 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 halo-card-hover flex flex-col justify-between overflow-hidden">
+              <div
+                class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent">
+              </div>
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span
+                    class="px-2.5 py-1 rounded bg-white/5 border border-white/20 text-white font-mono text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                    LIVE ARENA
+                  </span>
+                  <span class="font-mono text-xs text-zinc-500">// LEAGUE ROUND 3</span>
+                </div>
+                <h3 class="font-headline text-xl font-bold text-white group-hover:text-zinc-200 transition-colors mb-2">
+                  CODECRUX CODEFEST
+                </h3>
+                <p class="font-body text-sm text-zinc-400 mb-6 leading-relaxed">
+                  Competitive Programming Duel featuring ICPC-style dynamic programming and graph problems. Real-time
+                  live telemetry leaderboard with automated test-suite verdicts.
+                </p>
+                <div class="space-y-2.5 mb-6 border-y border-white/10 py-4 font-mono text-xs">
+                  <div class="flex justify-between items-center text-zinc-400">
+                    <span class="flex items-center gap-1.5"><span
+                        class="material-symbols-outlined text-[16px] text-zinc-300"
+                        data-icon="leaderboard">leaderboard</span>Rating System</span>
+                    <span class="font-bold text-white">Elo-Scaled Matrix</span>
+                  </div>
+                  <div class="flex justify-between items-center text-zinc-400">
+                    <span class="flex items-center gap-1.5"><span
+                        class="material-symbols-outlined text-[16px] text-zinc-300"
+                        data-icon="timer">timer</span>Format</span>
+                    <span class="text-zinc-200">3 Hours • 8 Challenges</span>
+                  </div>
+                  <div class="flex justify-between items-center text-zinc-400">
+                    <span class="flex items-center gap-1.5"><span
+                        class="material-symbols-outlined text-[16px] text-zinc-300"
+                        data-icon="emoji_events">emoji_events</span>Awards</span>
+                    <span class="text-zinc-200">Merit Trophies + Swag</span>
+                  </div>
+                </div>
+              </div>
+              <a href="#join"
+                class="w-full py-3 bg-zinc-900 border border-white/20 hover:border-white/50 text-white font-mono text-xs font-semibold rounded flex items-center justify-center gap-2 hover:bg-zinc-800 transition-all active:scale-98">
+                <span>Enter Code Arena</span>
+                <span class="material-symbols-outlined text-[18px]" data-icon="code">code</span>
+              </a>
+            </div>
+          </div>
+        </section>
+        <!-- ARCHITECTURAL CORES / DOMAINS SECTION -->
+        <section class="py-24 px-6 lg:px-12 bg-zinc-950/60 border-y border-white/10" id="domains">
+          <div class="max-w-[1440px] mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+              <div
+                class="inline-flex items-center gap-2 text-zinc-400 font-mono text-xs uppercase tracking-widest mb-3">
+                <span class="material-symbols-outlined text-[18px] text-white"
+                  data-icon="deployed_code">deployed_code</span>
+                <span>SPECIALIZED TECH DOMAINS</span>
+              </div>
+              <h2 class="font-headline text-3xl lg:text-4xl font-bold text-white mb-4">
+                ARCHITECTURAL CORES
+              </h2>
+              <p class="font-body text-base text-zinc-400">
+                Four specialized research and engineering division nodes operating within the chapter. Supervised by
+                faculty mentors, lead student researchers, and industry alumni.
+              </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <!-- Domain 01 -->
+              <div
+                class="p-8 rounded-xl bg-black border border-white/10 hover:border-white/35 backdrop-blur-xl transition-all duration-300 halo-card-hover flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-6">
+                    <span class="font-mono text-sm font-bold text-white">[01] // CORE_AI</span>
+                    <span
+                      class="px-2.5 py-1 rounded bg-zinc-900 font-mono text-xs text-zinc-400 border border-white/10">
+                      9 Active Repositories
+                    </span>
+                  </div>
+                  <h3 class="font-headline text-2xl font-bold text-white mb-3">
+                    Artificial Intelligence &amp; Data Systems
+                  </h3>
+                  <p class="font-body text-sm text-zinc-400 mb-6 leading-relaxed">
+                    Deep generative models, computer vision pipeline optimizations, multimodal autonomous agents, and
+                    distributed model inference on resource-constrained hardware.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">Transformers</span>
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">PyTorch</span>
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">Vector
+                      DBs</span>
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">LangChain</span>
+                  </div>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                  <span class="font-mono text-xs text-zinc-500">MENTOR: DR. V. KURIAKOSE</span>
+                  <a class="text-white font-mono text-xs flex items-center gap-1 hover:underline tracking-wide"
+                    href="#join">
+                    Explore Roadmap <span class="material-symbols-outlined text-[16px]"
+                      data-icon="chevron_right">chevron_right</span>
+                  </a>
+                </div>
+              </div>
+              <!-- Domain 02 -->
+              <div
+                class="p-8 rounded-xl bg-black border border-white/10 hover:border-white/35 backdrop-blur-xl transition-all duration-300 halo-card-hover flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-6">
+                    <span class="font-mono text-sm font-bold text-white">[02] // SEC_QUANTUM</span>
+                    <span
+                      class="px-2.5 py-1 rounded bg-zinc-900 font-mono text-xs text-zinc-400 border border-white/10">
+                      CTF Team • Rank #4 State
+                    </span>
+                  </div>
+                  <h3 class="font-headline text-2xl font-bold text-white mb-3">
+                    Cybersecurity &amp; Quantum Cryptography
+                  </h3>
+                  <p class="font-body text-sm text-zinc-400 mb-6 leading-relaxed">
+                    Offensive &amp; defensive cybersecurity operations, zero-trust infrastructure, binary exploitation,
+                    and post-quantum cryptographic primitives verification.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">Post-Quantum
+                      Lattice</span>
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">Wireshark</span>
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">Ghidra</span>
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">Zero-Trust</span>
+                  </div>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                  <span class="font-mono text-xs text-zinc-500">MENTOR: PROF. ANAND P.</span>
+                  <a class="text-white font-mono text-xs flex items-center gap-1 hover:underline tracking-wide"
+                    href="#join">
+                    Explore Roadmap <span class="material-symbols-outlined text-[16px]"
+                      data-icon="chevron_right">chevron_right</span>
+                  </a>
+                </div>
+              </div>
+              <!-- Domain 03 -->
+              <div
+                class="p-8 rounded-xl bg-black border border-white/10 hover:border-white/35 backdrop-blur-xl transition-all duration-300 halo-card-hover flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-6">
+                    <span class="font-mono text-sm font-bold text-white">[03] // CLOUD_DEVOPS</span>
+                    <span
+                      class="px-2.5 py-1 rounded bg-zinc-900 font-mono text-xs text-zinc-400 border border-white/10">
+                      Cluster Uptime: 99.98%
+                    </span>
+                  </div>
+                  <h3 class="font-headline text-2xl font-bold text-white mb-3">
+                    Cloud Infrastructure &amp; DevOps
+                  </h3>
+                  <p class="font-body text-sm text-zinc-400 mb-6 leading-relaxed">
+                    High-availability clusters, Kubernetes orchestrations, CI/CD telemetry pipelines, GitOps
+                    configurations, and bare-metal edge deployments for student projects.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">Kubernetes</span>
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">Terraform</span>
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">Prometheus</span>
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">Docker</span>
+                  </div>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                  <span class="font-mono text-xs text-zinc-500">MENTOR: ER. R. RAJEEV</span>
+                  <a class="text-white font-mono text-xs flex items-center gap-1 hover:underline tracking-wide"
+                    href="#join">
+                    Explore Roadmap <span class="material-symbols-outlined text-[16px]"
+                      data-icon="chevron_right">chevron_right</span>
+                  </a>
+                </div>
+              </div>
+              <!-- Domain 04 -->
+              <div
+                class="p-8 rounded-xl bg-black border border-white/10 hover:border-white/35 backdrop-blur-xl transition-all duration-300 halo-card-hover flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-6">
+                    <span class="font-mono text-sm font-bold text-white">[04] // EMBED_WEB3</span>
+                    <span
+                      class="px-2.5 py-1 rounded bg-zinc-900 font-mono text-xs text-zinc-400 border border-white/10">
+                      Hardware Fab Lab
+                    </span>
+                  </div>
+                  <h3 class="font-headline text-2xl font-bold text-white mb-3">
+                    Web3, IoT &amp; Embedded Robotics
+                  </h3>
+                  <p class="font-body text-sm text-zinc-400 mb-6 leading-relaxed">
+                    Smart industrial sensor telemetry, micro-controller RTOS architectures, smart contract security
+                    audits, and decentralized peer-to-peer communication arrays.
+                  </p>
+                  <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">ESP32
+                      / FreeRTOS</span>
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">Solidity</span>
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">Rust</span>
+                    <span
+                      class="px-2.5 py-1 bg-zinc-950 text-zinc-300 font-mono text-xs rounded border border-white/10">LoRaWAN</span>
+                  </div>
+                </div>
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                  <span class="font-mono text-xs text-zinc-500">MENTOR: PROF. MEERA S.</span>
+                  <a class="text-white font-mono text-xs flex items-center gap-1 hover:underline tracking-wide"
+                    href="#join">
+                    Explore Roadmap <span class="material-symbols-outlined text-[16px]"
+                      data-icon="chevron_right">chevron_right</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- CHAPTER CHRONOLOGY TIMELINE -->
+        <section class="py-24 px-6 lg:px-12 max-w-[1440px] mx-auto" id="timeline">
+          <div class="text-center max-w-2xl mx-auto mb-20">
+            <div class="inline-flex items-center gap-2 text-zinc-400 font-mono text-xs uppercase tracking-widest mb-3">
+              <span class="material-symbols-outlined text-[18px] text-white" data-icon="timeline">timeline</span>
+              <span>TELEMETRY / PROVEN TRAJECTORY</span>
+            </div>
+            <h2 class="font-headline text-3xl lg:text-4xl font-bold text-white mb-3">
+              CHAPTER CHRONOLOGY
+            </h2>
+            <p class="font-body text-sm text-zinc-400">
+              Documenting rapid institutional velocity and global recognition since IEEE CS chapter inception at MBITS.
+            </p>
+          </div>
+
+          <!-- Chronology List with Rail and Connectors matching design -->
+          <div class="relative max-w-4xl mx-auto">
+            <!-- Vertical Timeline Rail (running through node centers) -->
+            <div class="absolute left-[11px] md:left-[11px] top-6 bottom-6 w-[1px] bg-white/20 pointer-events-none"></div>
+
+            <div class="space-y-8 md:space-y-10">
+              <!-- Timeline Item 1: 2021 // GENESIS -->
+              <div class="relative flex items-start gap-4 md:gap-6 group">
+                <!-- Concentric Outer Ring + Dot + Horizontal Connector Line -->
+                <div class="relative flex items-center z-10 pt-5 flex-shrink-0">
+                  <div class="w-6 h-6 rounded-full border border-white/60 bg-black flex items-center justify-center shadow-[0_0_14px_rgba(255,255,255,0.7)] group-hover:scale-110 transition-transform duration-200">
+                    <div class="w-2 h-2 rounded-full bg-white"></div>
+                  </div>
+                  <div class="w-6 md:w-10 h-[1px] bg-white/20"></div>
+                </div>
+
+                <!-- Milestone Card -->
+                <div class="flex-1 p-6 md:p-8 rounded-xl bg-zinc-950/80 border border-white/10 hover:border-white/35 backdrop-blur-xl transition-all duration-300 halo-card-hover">
+                  <span class="font-mono text-xs text-zinc-400 font-bold uppercase tracking-wider block mb-2">2021 // GENESIS</span>
+                  <h4 class="font-headline text-lg md:text-xl font-bold text-white mb-2">Chapter Inception &amp; Charter Recognition</h4>
+                  <p class="font-body text-xs md:text-sm text-zinc-400 leading-relaxed font-light">
+                    Formally chartered under IEEE Computer Society Region 10 (Asia-Pacific) with 30 founding student researchers and engineers.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Timeline Item 2: 2022 // DISTINCTION -->
+              <div class="relative flex items-start gap-4 md:gap-6 group">
+                <div class="relative flex items-center z-10 pt-6 flex-shrink-0">
+                  <div class="w-6 h-6 flex items-center justify-center">
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-200 border-2 border-black group-hover:scale-125 transition-transform duration-200 shadow-[0_0_8px_rgba(255,255,255,0.5)]"></div>
+                  </div>
+                  <div class="w-6 md:w-10 h-[1px] bg-white/20"></div>
+                </div>
+
+                <div class="flex-1 p-6 md:p-8 rounded-xl bg-zinc-950/80 border border-white/10 hover:border-white/35 backdrop-blur-xl transition-all duration-300 halo-card-hover">
+                  <span class="font-mono text-xs text-zinc-400 font-bold uppercase tracking-wider block mb-2">2022 // DISTINCTION</span>
+                  <h4 class="font-headline text-lg md:text-xl font-bold text-white mb-2">Outstanding Student Branch Chapter Award</h4>
+                  <p class="font-body text-xs md:text-sm text-zinc-400 leading-relaxed font-light">
+                    Conferred by IEEE Kerala Section for exemplary technical outreach, active hackathon sponsorships, and code sprints across Kerala.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Timeline Item 3: 2023 // EXPANSION -->
+              <div class="relative flex items-start gap-4 md:gap-6 group">
+                <div class="relative flex items-center z-10 pt-6 flex-shrink-0">
+                  <div class="w-6 h-6 flex items-center justify-center">
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-200 border-2 border-black group-hover:scale-125 transition-transform duration-200 shadow-[0_0_8px_rgba(255,255,255,0.5)]"></div>
+                  </div>
+                  <div class="w-6 md:w-10 h-[1px] bg-white/20"></div>
+                </div>
+
+                <div class="flex-1 p-6 md:p-8 rounded-xl bg-zinc-950/80 border border-white/10 hover:border-white/35 backdrop-blur-xl transition-all duration-300 halo-card-hover">
+                  <span class="font-mono text-xs text-zinc-400 font-bold uppercase tracking-wider block mb-2">2023 // EXPANSION</span>
+                  <h4 class="font-headline text-lg md:text-xl font-bold text-white mb-2">Hosted South India's Largest Collegiate Hackathon</h4>
+                  <p class="font-body text-xs md:text-sm text-zinc-400 leading-relaxed font-light">
+                    CYBERSHIFT 2.0 welcomed 600+ developers representing 45 engineering institutes with over 120 deployed open-source submissions.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Timeline Item 4: 2024 // GLOBAL HONORS -->
+              <div class="relative flex items-start gap-4 md:gap-6 group">
+                <div class="relative flex items-center z-10 pt-6 flex-shrink-0">
+                  <div class="w-6 h-6 flex items-center justify-center">
+                    <div class="w-2.5 h-2.5 rounded-full bg-zinc-200 border-2 border-black group-hover:scale-125 transition-transform duration-200 shadow-[0_0_8px_rgba(255,255,255,0.5)]"></div>
+                  </div>
+                  <div class="w-6 md:w-10 h-[1px] bg-white/20"></div>
+                </div>
+
+                <div class="flex-1 p-6 md:p-8 rounded-xl bg-zinc-950/80 border border-white/10 hover:border-white/35 backdrop-blur-xl transition-all duration-300 halo-card-hover">
+                  <span class="font-mono text-xs text-zinc-400 font-bold uppercase tracking-wider block mb-2">2024 // GLOBAL HONORS</span>
+                  <h4 class="font-headline text-lg md:text-xl font-bold text-white mb-2">Best Technical Chapter &amp; 4 Merwin Scholars</h4>
+                  <p class="font-body text-xs md:text-sm text-zinc-400 leading-relaxed font-light">
+                    Awarded IEEE CS Global Richard E. Merwin Student Scholarship for 4 executive members alongside IEEE CS Darrel Chong Student Activity Gold Award.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Timeline Item 5: 2025 // HORIZON -->
+              <div class="relative flex items-start gap-4 md:gap-6 group">
+                <div class="relative flex items-center z-10 pt-5 flex-shrink-0">
+                  <div class="w-6 h-6 rounded-full border border-white/60 bg-black flex items-center justify-center shadow-[0_0_14px_rgba(255,255,255,0.7)] group-hover:scale-110 transition-transform duration-200">
+                    <div class="w-2 h-2 rounded-full bg-white"></div>
+                  </div>
+                  <div class="w-6 md:w-10 h-[1px] bg-white/20"></div>
+                </div>
+
+                <div class="flex-1 p-6 md:p-8 rounded-xl bg-zinc-950/80 border border-white/25 hover:border-white/45 backdrop-blur-xl transition-all duration-300 halo-card-hover shadow-[0_0_25px_rgba(255,255,255,0.06)]">
+                  <span class="font-mono text-xs text-white font-bold uppercase tracking-wider block mb-2">2025 // HORIZON</span>
+                  <h4 class="font-headline text-lg md:text-xl font-bold text-white mb-2">Quantum &amp; AI Research Cluster + Incubation Pipeline</h4>
+                  <p class="font-body text-xs md:text-sm text-zinc-400 leading-relaxed font-light">
+                    Inaugurated dedicated high-compute AI cluster and direct venture incubation pipeline connecting MBITS builders to Silicon Valley founders.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- STUDENT & ALUMNI VOICES -->
+        <section class="py-24 px-6 lg:px-12 bg-zinc-950/60 border-t border-white/10" id="team">
+          <div class="max-w-[1440px] mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+              <div>
+                <div class="flex items-center gap-2 text-zinc-400 font-mono text-xs uppercase tracking-widest mb-2">
+                  <span class="material-symbols-outlined text-[16px] text-white" data-icon="forum">forum</span>
+                  <span>COMMUNITY TRANSMISSIONS</span>
+                </div>
+                <h2 class="font-headline text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                  STUDENT &amp; ALUMNI VOICES
+                </h2>
+              </div>
+              <p class="font-body text-sm text-zinc-400 max-w-md">
+                Peer learning, research guidance, and high-frequency technical hackathons engineered directly into our
+                members' DNA.
+              </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- Transmission 1 -->
+              <div
+                class="p-6 rounded-xl bg-black border border-white/10 hover:border-white/30 backdrop-blur-xl flex flex-col justify-between transition-all duration-300 halo-card-hover">
+                <p class="font-body text-sm text-zinc-300 italic mb-6 leading-relaxed">
+                  "Directing the cybersecurity node within IEEE CS MBITS taught me practical network reverse engineering
+                  that classroom curriculums could never recreate. It paved my route to direct placement at Cisco
+                  Systems."
+                </p>
+                <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+                  <img class="w-11 h-11 rounded-full object-cover border border-white/20 grayscale"
+                    data-alt="A portrait of Abhishek Menon"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBjrRl5S7eTVkdcIqB8xgeMMpPzNhIX5c3SvePjaweoiicySgZFWN4zKi1-CBZ8pwVe0E6NXuXkTqKFHnif9wqFyZQiTCOTC-BZR6trczpxhuWM5l8wtK2FYi2VQuTO_SE1l_ErO5hxQ3_52Z3xg6WnbuQvvxeCZ4boJNLQvXw2HpaagErz4vW5VWN0b6XweexI_K3QHuHh0YlY_vUFSFmmu9HG5T3EdiAwqEHxbpnLEkvowiJjc-Z2LoIfzPwF3SBWZtZFVcrBygc" />
+                  <div>
+                    <h4 class="font-headline text-sm font-bold text-white">Abhishek Menon</h4>
+                    <p class="font-mono text-[11px] text-zinc-400">Ex-Lead Cyber Sec • Security Engineer @ Cisco</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Transmission 2 -->
+              <div
+                class="p-6 rounded-xl bg-black border border-white/10 hover:border-white/30 backdrop-blur-xl flex flex-col justify-between transition-all duration-300 halo-card-hover">
+                <p class="font-body text-sm text-zinc-300 italic mb-6 leading-relaxed">
+                  "Being awarded the IEEE CS Richard E. Merwin Scholarship provided international exposure to
+                  cutting-edge research in Geneva. The chapter culture here actively cultivates fearless builders and
+                  researchers."
+                </p>
+                <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+                  <img class="w-11 h-11 rounded-full object-cover border border-white/20 grayscale"
+                    data-alt="A portrait of Gayathri S. Nair"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZKVLYDdgzNuQkGGFPViqZUJVZ3PGX5Te5tyjH4b1rcKu8OAB5sxh10Kb5BB1KuofX1PSThIm7f2ALBmwrzAds0PxnsuusEPiWCRvUa4_yLGYLYZ_ef0cElY3RzotuoBrOOdCwSCn66lB0WcuqhSgwh8tRIRePHwm_SdugTNBhsqHy1d6SPWZ3k3FMc6gBDZj-WjcBTgEg234IZTW75qAPD1uKYEkIwf25-PSAOrsrF7JDUpOQTyQL4z7ljQ50iCgB2O1SLaFkVbEj" />
+                  <div>
+                    <h4 class="font-headline text-sm font-bold text-white">Gayathri S. Nair</h4>
+                    <p class="font-mono text-[11px] text-zinc-400">Merwin Scholar '24 • CERN Summer Fellow</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Transmission 3 -->
+              <div
+                class="p-6 rounded-xl bg-black border border-white/10 hover:border-white/30 backdrop-blur-xl flex flex-col justify-between transition-all duration-300 halo-card-hover">
+                <p class="font-body text-sm text-zinc-300 italic mb-6 leading-relaxed">
+                  "Organizing CYBERSHIFT taught me technical program execution at scale. Working on open-source
+                  distributed cloud setups for the chapter directly led to my cloud engineering role at Microsoft."
+                </p>
+                <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+                  <img class="w-11 h-11 rounded-full object-cover border border-white/20 grayscale"
+                    data-alt="A portrait of Kevin Mathew"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7pFAZ9jW59mNGBqhppayjnWrmlhb9ZXUYn3r30D1FjEiYzY7XEVXsUKmsLDWw3OP_30Wvggh1Y4AXo1hK_mxqFv33y-SPw0apA1sJ7VXf-hTlrisKlPaoj09nj-ymaw4BNp6151S0WoDi12sng6QYTWvbhvEjI4fF7kh68w26ChwVs_P0xKA79TWidaGZkAf2YWAtdTSZbfx4Dp-0zMZE6lRA5S1KZR6_u-NnCVGT3kLQEAjakoCqoCdsUjiVCy-C_WDVC_pQ_YfD" />
+                  <div>
+                    <h4 class="font-headline text-sm font-bold text-white">Kevin Mathew</h4>
+                    <p class="font-mono text-[11px] text-zinc-400">Chapter Chair '23 • SDE @ Microsoft</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- CHAPTER TERMINAL / JOIN CTA BANNER -->
+        <section class="py-24 px-6 lg:px-12 max-w-[1440px] mx-auto" id="join">
+          <div
+            class="relative rounded-2xl bg-zinc-950 border border-white/20 p-8 md:p-14 overflow-hidden halo-glow backdrop-blur-2xl">
+            <div
+              class="absolute -right-20 -bottom-20 w-80 h-80 bg-white/[0.03] rounded-full blur-[100px] pointer-events-none">
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <div>
+                <div
+                  class="inline-flex items-center gap-2 text-zinc-400 font-mono text-xs uppercase tracking-widest mb-3">
+                  <span class="material-symbols-outlined text-[16px] text-white" data-icon="terminal">terminal</span>
+                  <span>SYNAPSE INITIATION</span>
+                </div>
+                <h2 class="font-headline text-3xl lg:text-4xl font-bold text-white mb-4">
+                  READY TO DECODE YOUR POTENTIAL?
+                </h2>
+                <p class="font-body text-sm text-zinc-400 mb-8 leading-relaxed font-light">
+                  Step into the vanguard of collegiate computer science. Join IEEE Computer Society MBITS to build
+                  production systems, publish research, access travel grants, and establish lifelong global developer
+                  peer networks.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                  <a class="bg-white text-black font-mono text-xs font-bold uppercase tracking-wider px-8 py-3.5 rounded hover:bg-zinc-200 transition-all active:scale-95 flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                    href="https://www.computer.org" target="_blank">
+                    <span>Join Official Chapter</span>
+                    <span class="material-symbols-outlined text-[18px]" data-icon="verified_user">verified_user</span>
+                  </a>
+                  <button
+                    class="bg-white/5 border border-white/20 hover:border-white/50 text-white font-mono text-xs uppercase tracking-wider px-6 py-3.5 rounded transition-all flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="chat">chat</span>
+                    <span>Enter Community Discord</span>
+                  </button>
+                </div>
+              </div>
+              <!-- Interactive CLI Snippet Simulation -->
+              <div class="rounded-lg bg-black border border-white/15 p-5 font-mono text-xs shadow-inner">
+                <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-3 text-zinc-500">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-3 h-3 rounded-full bg-zinc-800 border border-white/20"></span>
+                    <span class="w-3 h-3 rounded-full bg-zinc-800 border border-white/20"></span>
+                    <span class="w-3 h-3 rounded-full bg-zinc-800 border border-white/20"></span>
+                  </div>
+                  <span class="text-[11px] text-zinc-400">mbits-cs-node // bash terminal</span>
+                </div>
+                <div class="space-y-1.5 text-zinc-300">
+                  <p><span class="text-zinc-500">user@mbits-sbc:~$</span> <span class="text-white">curl -sSf
+                      https://cs.mbits.edu/handshake.sh</span></p>
+                  <p class="text-zinc-500">// Initiating cryptographical key verification...</p>
+                  <p class="text-zinc-400">[OK] Handshake confirmed with IEEE Region 10 Master Node.</p>
+                  <p><span class="text-zinc-500">user@mbits-sbc:~$</span> <span class="text-white">mbits_cs --init
+                      join_member --track "AI &amp; Systems"</span></p>
+                  <p class="text-zinc-400">[SYSTEM]: Generating Student Branch Member Credentials...</p>
+                  <p class="text-white font-bold">[SUCCESS]: Candidate authenticated. Welcome to IEEE Computer Society
+                    MBITS SBC.</p>
+                  <div class="pt-2 flex items-center gap-1">
+                    <span class="text-zinc-500">user@mbits-sbc:~$</span>
+                    <span class="w-2 h-4 bg-white inline-block animate-pulse"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- MONOCHROME FOOTER -->
+        <footer class="relative bg-black border-t border-white/10">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center w-full px-6 lg:px-12 py-10 max-w-[1440px] mx-auto gap-6">
+            <div class="flex flex-col gap-2 text-center md:text-left">
+              <span class="font-headline font-extrabold text-white text-xl tracking-tight">
+                IEEE CS MBITS
+              </span>
+              <p class="font-body text-xs text-zinc-500 max-w-md">
+                © 2025 IEEE Computer Society MBITS Student Branch Chapter. All rights reserved. System Operational
+                [SYNC: 0x9F4].
+              </p>
+            </div>
+            <!-- Links -->
+            <div class="flex flex-wrap items-center justify-center gap-6">
+              <a class="text-zinc-400 hover:text-white transition-colors duration-200 font-mono text-xs" href="#hero">
+                Telemetry
+              </a>
+              <a class="text-zinc-400 hover:text-white transition-colors duration-200 font-mono text-xs" href="#events">
+                Constitution
+              </a>
+              <a class="text-zinc-400 hover:text-white transition-colors duration-200 font-mono text-xs"
+                href="#domains">
+                Research Archive
+              </a>
+              <a class="text-zinc-400 hover:text-white transition-colors duration-200 font-mono text-xs" href="#team">
+                Code of Ethics
+              </a>
+              <a class="text-white font-semibold font-mono text-xs hover:underline" href="#join">
+                Portal Access
+              </a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </main>
+  <!-- SCRIPT: Monochrome Canvas Particle Engine for Lower Content -->
+  <script>
+      (function () {
+        const canvas = document.getElementById('particle-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const container = document.getElementById('lower-content-wrapper');
+
+        let particles = [];
+        let width = 0;
+        let height = 0;
+        let animId = null;
+
+        // Check prefers-reduced-motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function resize() {
+          if (!container) return;
+          width = canvas.width = container.offsetWidth;
+          height = canvas.height = container.offsetHeight;
+          initParticles();
+        }
+
+        function initParticles() {
+          particles = [];
+          // Calculate particle density proportionally to screen size
+          const count = Math.min(Math.floor((width * height) / 38000), 75);
+          for (let i = 0; i < count; i++) {
+            particles.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              radius: Math.random() * 1.5 + 0.8,
+              alpha: Math.random() * 0.22 + 0.12,
+              vx: (Math.random() - 0.5) * 0.28,
+              vy: (Math.random() - 0.5) * 0.28,
+              pulseSpeed: Math.random() * 0.02 + 0.008,
+              baseAlpha: Math.random() * 0.22 + 0.12,
+              pulseOffset: Math.random() * Math.PI * 2
+            });
+          }
+        }
+
+        let frame = 0;
+        function render() {
+          ctx.clearRect(0, 0, width, height);
+          frame++;
+
+          // Draw faint constellation linkages between nearby nodes
+          const maxDist = 125;
+          const maxDistSq = maxDist * maxDist;
+
+          for (let i = 0; i < particles.length; i++) {
+            const p1 = particles[i];
+
+            // Animate subtle drifting if not reduced motion
+            if (!prefersReducedMotion) {
+              p1.x += p1.vx;
+              p1.y += p1.vy;
+
+              if (p1.x < -10) p1.x = width + 10;
+              else if (p1.x > width + 10) p1.x = -10;
+              if (p1.y < -10) p1.y = height + 10;
+              else if (p1.y > height + 10) p1.y = -10;
+
+              // Gentle breathing luminance
+              p1.alpha = p1.baseAlpha + Math.sin(frame * p1.pulseSpeed + p1.pulseOffset) * 0.08;
+            }
+
+            // Draw connections
+            for (let j = i + 1; j < particles.length; j++) {
+              const p2 = particles[j];
+              const dx = p1.x - p2.x;
+              const dy = p1.y - p2.y;
+              const distSq = dx * dx + dy * dy;
+
+              if (distSq < maxDistSq) {
+                const dist = Math.sqrt(distSq);
+                const lineAlpha = (1 - dist / maxDist) * 0.11;
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgba(255, 255, 255, ' + lineAlpha + ')';
+                ctx.lineWidth = 0.65;
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.stroke();
+              }
+            }
+
+            // Draw particle dot
+            ctx.beginPath();
+            ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 255, 255, ' + Math.max(0.05, p1.alpha) + ')';
+            ctx.shadowColor = 'rgba(255, 255, 255, 0.4)';
+            ctx.shadowBlur = p1.radius * 2;
+            ctx.fill();
+            ctx.shadowBlur = 0; // reset
+          }
+
+          animId = requestAnimationFrame(render);
+        }
+
+        // Initialize and bind listeners
+        window.addEventListener('resize', resize);
+        window.addEventListener('load', () => {
+          resize();
+          if (!animId) render();
+        });
+
+        resize();
+        render();
+      })();
+  </script>
+
+  <!-- INTERACTIVE SCRIPTS: Open Loader, Scroll Animations, ScrollSpy & Mouse Glow -->
+  <script>
+    // ── Top Page Loader Bar on Open / Load ──
+    (function initLoader() {
+      const bar = document.createElement('div');
+      bar.className = 'page-loader-bar';
+      document.documentElement.appendChild(bar);
+
+      let progress = 18;
+      bar.style.width = progress + '%';
+
+      const timer = setInterval(() => {
+        if (progress < 85) {
+          progress += Math.random() * 18;
+          bar.style.width = Math.min(progress, 88) + '%';
+        }
+      }, 90);
+
+      window.addEventListener('load', () => {
+        clearInterval(timer);
+        bar.style.width = '100%';
+        setTimeout(() => {
+          bar.style.opacity = '0';
+          setTimeout(() => bar.remove(), 400);
+        }, 250);
+      });
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // ── Scroll Reveal with IntersectionObserver ──
+      const revealEls = document.querySelectorAll('.reveal-on-scroll');
+      if (revealEls.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.08,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealEls.forEach(el => observer.observe(el));
+      }
+
+      // Also observe all cards in grids if not yet marked
+      document.querySelectorAll('#events .group, #domains .group, #team .group, .space-y-12 > div').forEach((el, idx) => {
+        if (!el.classList.contains('reveal-on-scroll')) {
+          el.classList.add('reveal-on-scroll');
+          el.style.transitionDelay = (idx % 3 * 0.12) + 's';
+          if (typeof observer !== 'undefined') observer.observe(el);
+        }
+      });
+
+      // ── Interactive Mouse Spotlight Glow ──
+      document.querySelectorAll('.halo-card-hover, .spotlight-card, #events .group, #domains .group').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+          card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+        });
+      });
+
+      // ── Smooth Scroll with Offset for All Anchor Links ──
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (href === '#' || href === '') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
+            window.scrollTo({ top, behavior: 'smooth' });
+            history.pushState(null, '', href);
+          }
+        });
+      });
+
+      // ── ScrollSpy for Sticky Navigation Bar ──
+      const sections = document.querySelectorAll('section[id]');
+      const navItems = document.querySelectorAll('#nav-links .nav-item');
+
+      function updateScrollSpy() {
+        const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+        let currentId = 'hero';
+
+        sections.forEach(sec => {
+          const secTop = sec.offsetTop - 120;
+          if (scrollPos >= secTop) {
+            currentId = sec.getAttribute('id');
+          }
+        });
+
+        navItems.forEach(item => {
+          const href = item.getAttribute('href');
+          if (href === '#' + currentId) {
+            item.className = 'nav-item text-white font-semibold border-b-2 border-white pb-1 text-sm font-mono tracking-wide transition-all';
+          } else {
+            item.className = 'nav-item text-zinc-400 font-medium hover:text-white transition-colors duration-200 text-sm font-mono tracking-wide';
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateScrollSpy, { passive: true });
+      updateScrollSpy();
+    });
+  </script>
+
+</body>
+
+</html>
